@@ -43,7 +43,17 @@ void enqueueF(struct DEqueue * ptr , int val){
     
 }
 int dequeueR(struct DEqueue * ptr){
-    
+   
+   int a=-1;
+   if (ptr->r==-1)
+   {
+    printf("element can't be dequeued");
+   }
+   else{
+    a=ptr->arr[ptr->r--];
+   }
+   return a;
+      
 }
 int main()
 {
