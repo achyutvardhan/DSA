@@ -1,51 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+struct node *f = NULL;
+struct node *r = NULL;
 struct node
 {
     int data;
     struct node *next;
 };
-int isEmpty(struct node*f )
+
+void linkedListTraversal(struct node *ptr)
 {
-if (f->next =NULL)
-{
-    return 1;
-}
-else
-return 0;
+    printf("Printing the elements of this linked list\n");
+    while (ptr != NULL)
+    {
+        printf("Element: %d\n", ptr->data);
+        ptr = ptr->next;
+    }
 }
 
-void dequeue(struct node*f)
-{ if (isEmpty(f))
+void enqueue(int val)
 {
-    printf("ll is empty");
-}
-else
-{
-f=f->next;
-printf("dequeued");
-}
+    struct node *n = (struct node *)malloc(sizeof(struct node));
+    if (n == NULL)
+    {
+        printf("queue is full");
+    }
+    else
+    {
+        n->data = val;
+        n->next = NULL;
+        if (f == NULL)
+        {
+            /* code */
+            f = r = n;
+        }
+        else
+        {
+            r->next = n;
+            r = n;
+        }
+    }
 }
 
-void enqueue(struct node *q, int val)
+int dequeue()
 {
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    ptr->data = val;
-    q->next = ptr;
-    ptr->next = NULL;
-    q=ptr;
-    printf("enqueued\n");
+    struct node *ptr = f;
+    int val = -1;
+    if (f == NULL)
+    {
+        printf("queue is empty");
+    }
+    else
+    {
+        f = f->next;
+        val = ptr->data;
+        free(ptr);
+    }
+    return val;
 }
 int main()
 {
-    struct node *f = (struct node *)malloc(sizeof(struct node));
-    struct node *r = (struct node *)malloc(sizeof(struct node));
-    f=r;
-    enqueue(r,3);
-    enqueue(r,5);
-    dequeue(f);
-    dequeue(f);
-    dequeue(f);
-
+    linkedListTraversal(f);
+    enqueue(34);
+    enqueue(4);
+    enqueue(7);
+    enqueue(17);
+    printf("Dequeuing element %d\n", dequeue());
+    printf("Dequeuing element %d\n", dequeue());
+    linkedListTraversal(f);
     return 0;
 }

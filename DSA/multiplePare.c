@@ -74,7 +74,7 @@ int multiParenthesis(char *exp)
     sp->size = 100;
     sp->top = -1;
     sp->arr = (char *)malloc(sizeof(char));
-    char poped = pop(sp);
+    char poped ;
     for (int i = 0; exp[i] != '\0'; i++)
     {
         if (exp[i] == '(' || exp[i] == '[' || exp[i] == '{')
@@ -82,7 +82,7 @@ int multiParenthesis(char *exp)
             push(sp, exp[i]);
         }
         else if (exp[i] == ')' || exp[i] == ']' || exp[i] == '}')
-        {
+        {   poped = pop(sp);
             if (isEmpty(sp))
             {
                 return 0;
