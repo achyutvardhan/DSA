@@ -1,45 +1,43 @@
-#include<stdio.h>
+#include <stdio.h>
 
-void printArray(int* a,int n){
-    for (int  i = 0; i < n; i++)
+void printArray(int *a, int n)
+{
+    for (int i = 0; i < n; i++)
     {
-        printf("%d ",a[i]);
+        printf("%d ", a[i]);
     }
-    
 }
 
-void insertionSort(int *a,int n){
-        int sorted ;
-        
-    for (int  i = 0; i < n-1; i++)
-    {   sorted =i;
-        for (int j = sorted; j >=0; j--)
-        {  
-           if (a[sorted+1]<a[j])
-           {
-            int temp = a[sorted+1];
-            a[sorted+1]= a[j];
-            a[j]=temp;
-           }
-                sorted--;
+void insertionSort(int *a, int n)
+{
+    int sorted;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        sorted = i;
+        for (int j = sorted; j >= 0; j--)
+        {
+            if (a[sorted + 1] < a[j])
+            {
+                int temp = a[sorted + 1];
+                a[sorted + 1] = a[j];
+                a[j] = temp;
+            }
+            sorted--;
         }
-        
     }
-    
 }
 int main()
 {
     // int a[]={7,12,3,4,1};
-int a[] = {3, 5, 2, 13, 12, 3, 2, 13, 45};
+    int a[] = {3, 5, 2, 13, 12, 3, 2, 13, 45};
     int n = 9;
-    printArray(a,n);
+    printArray(a, n);
     printf("\n");
-    insertionSort(a,n);
-    printArray(a,n);
+    insertionSort(a, n);
+    printArray(a, n);
     return 0;
 }
-
-
 
 // code with harry code for insertion sort
 
@@ -88,8 +86,8 @@ int a[] = {3, 5, 2, 13, 12, 3, 2, 13, 45};
 //    //      07, 12, 23, 54,| 65, 09 --> After the 4th pass
 
 //    //      07, 12, 23, 54, 65,| 09 --> i=5, key=09, j=4
-//    //      07, 09, 12, 23, 54, 65| --> After the 5th pass 
-    
+//    //      07, 09, 12, 23, 54, 65| --> After the 5th pass
+
 //     int A[] = {12, 54, 65, 7, 23, 9};
 //     int n = 6;
 //     printArray(A, n);
