@@ -6,59 +6,53 @@ void printArray(int a[], int n)
     {
         printf("%d ", a[i]);
     }
+    printf("\n");
 }
 
-void mergeSort(int a[], int b[], int c[], int m, int n, int p)
+void mergeSort(int *a, int n, int *b, int low, int mid, int high)
 {
-    int i, j, k;
-    i = k = j = 0;
-
-    while (k < p)
+    int j = mid + 1;
+    int i = low;
+    int k = low;
+    while (k < n)
     {
-        if (a[i] <= b[j] && i < n && j < m)
+        if (a[i] >= a[j] && i <= mid && j <= high)
         {
-            c[k] = a[i];
-            i++;
-            k++;
-        }
-        if (b[j] < a[i] && i < n && j < m)
-        {
-            c[k] = b[j];
+            b[k] = a[j];
             j++;
             k++;
         }
-        if (i >= n)
+        if (a[i] < a[j] && i <= mid && j <= high)
         {
-            c[k] = b[j];
-            k++;
-            j++;
-        }
-
-        if (j >= m)
-        {
-            c[k] = a[i];
-            k++;
+            b[k] = a[i];
             i++;
+            k++;
         }
-
-       
+        if (i > mid)
+        {
+            b[k] = a[j];
+            j++;
+            k++;
+        }
+        if (j > high)
+        {
+            b[k] = a[i];
+            i++;
+            k++;
+        }
     }
-
 }
-
 
 int main()
 {
-    int n = 4, m = 5;
-    int p = m + n;
-    int a[] = {2, 3, 4, 5};
-    int b[] = {1, 5,6, 7, 8};
-    int c[p];
+    int a[] = {7, 15, 2, 8, 10};
+    int n = 5;
+    int b[n];
+    int l = 0;
+    int h = n - 1;
+    int m = 1;
     printArray(a, n);
-    printf("\n");
-    printArray(b, m);
-    printf("\n");
-    mergeSort(a, b, c, m, n, p);
-    printArray(c, p);
+    mergeSort(a, n, b, l, m, h);
+    printArray(b, n);
     return 0;
 }
