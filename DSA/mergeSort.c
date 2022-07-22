@@ -9,6 +9,7 @@ void printArray(int a[], int n)
     printf("\n");
 }
 
+
 void mergeSort(int *a, int n, int *b, int low, int mid, int high)
 {
     int j = mid + 1;
