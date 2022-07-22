@@ -22,6 +22,7 @@ int dequeueF(struct DEqueue * ptr)
 }
 void enqueueR(struct DEqueue * ptr , int val)
 {
+    
   if (ptr->r == ptr->size-1)
   {
     printf("queue is full");
