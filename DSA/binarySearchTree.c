@@ -27,22 +27,23 @@ void inOrder(struct node * root){
     }
     
 }
-int isBst(struct node *root)
-{
-    if (root!=NULL)
-    {
-      if (!isBst(root->left))
-      {
-        /* code */
-        return 0;
-      }
-      
-
+int isBST(struct  node* root){
+    static struct node *prev = NULL;
+    if(root!=NULL){
+        if(!isBST(root->left)){
+            return 0;
+        }
+        if(prev!=NULL && root->data <= prev->data){
+            return 0;
+        }
+        prev = root;
+        return isBST(root->right);
     }
     else{
         return 1;
     }
 }
+
 int main()
 {
     struct node * p = cerateNode(5);
