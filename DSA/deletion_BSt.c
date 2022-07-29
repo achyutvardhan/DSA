@@ -9,6 +9,27 @@ struct node
     struct node *left;
     struct node *right;
 };
+
+
+struct node *indorderPre(struct node *root)
+{
+
+    if (root->left==NULL)
+    {
+      root=root->right;  
+    }
+    else{
+    root = root->left;
+
+    while (root->right != NULL)
+    {
+        root = root->right;
+    }
+    }
+    return root;
+}
+
+
 struct node *cerateNode(int data)
 {
     struct node *p = (struct node *)malloc(sizeof(struct node));
@@ -43,33 +64,49 @@ struct node *deleteNode(struct node *root, int value)
     // deletion stratergy when node is found
     else
     {
-        iPre = indorderPre(root);
+        iPre = indorderPre(root);//6
         root->data = iPre->data;
+        if (root->left!=NULL)
+        {
+            /* code */
         root->left = deleteNode(root->left, iPre->data);
+        }
+        else{
+            root->right = deleteNode(root->right, iPre->data);
+        }
     }
     return root;
 }
-struct node *indorderPre(struct node *root)
+
+void inOrder(struct node*root)
 {
-    root = root->left;
-    while (root->right != NULL)
+    if (root!=NULL)
     {
-        root = root->right;
+        inOrder(root->left);
+        printf("%d ",root->data);
+        inOrder(root->right);
     }
-    return root;
+    
 }
 int main()
 {
-    struct node *p = cerateNode(5);
-    struct node *p1 = cerateNode(3);
+    struct node *p = cerateNode(4);
+    struct node *p1 = cerateNode(2);
     struct node *p2 = cerateNode(1);
-    struct node *p3 = cerateNode(4);
+    struct node *p3 = cerateNode(3);
     struct node *p4 = cerateNode(6);
-
+    struct node *p5 = cerateNode(7);
+    struct node *p6 = cerateNode(5);
+    struct node *p7 = cerateNode(8);
+    
     p->left = p1;
     p->right = p4;
     p1->left = p2;
     p1->right = p3;
-
+    p4->right = p5;
+    p4->left = p6;
+    p5->right =p7;
+ deleteNode(p,6);
+inOrder(p);
     return 0;
 }
